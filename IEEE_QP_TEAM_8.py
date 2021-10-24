@@ -19,16 +19,6 @@ y_dist_left = 0
 y_dist_avg = 0
 y_dist_array = []
 
-def gradient(c1,c2):
-    x1 = c1[0]
-    y1 = c1[1]
-    x2 = c2[0]
-    y2 = c2[1]
-    grad = 0
-    if x2 - x1:
-        grad = (y2-y1)/(x2-x1)
-    return grad    
-
 if not video.isOpened():
     raise IOError("Cannot open webcam")
 
