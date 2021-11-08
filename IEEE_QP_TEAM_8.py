@@ -3,8 +3,8 @@ import numpy as np
 import mediapipe as mp
 import time
 
-midline = 195
-interval = 25
+midline = 140
+interval = 30
 
 mpDraw = mp.solutions.drawing_utils
 mpPose = mp.solutions.pose

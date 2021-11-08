@@ -1,76 +1,71 @@
+# Program to Show how to use images in kivy
 
-# from kivy.app import App
-# from kivy.lang import Builder
-# from kivy.uix.screenmanager import ScreenManager, Screen
-# from kivy.uix.widget import Widget
-# from kivy.uix.boxlayout import BoxLayout
-# from kivy.uix.image import Image
-# from kivy.clock import Clock
-# from kivy.graphics.texture import Texture
+# import kivy module
+import kivy
+	
+# base Class of your App inherits from the App class.
+# app:always refers to the instance of your application
+from kivy.app import App
 
-# import cv2 as cv
-# import numpy as np
-# import mediapipe as mp
-# import time
+# this restrict the kivy version i.e
+# below this kivy version you cannot
+# use the app or software
+kivy.require('1.9.0')
 
-# Builder.load_string("""
-# <StartScreen>:
-#     BoxLayout:
-#         Button:
-#             markup: True
-#             text: 'READY TO WORK WITH A HEALTHY NECK POSTURE?\\n\\n\\n[b]     TAP ANYWHERE ON THE SCREEN TO BEGIN![/b]'
-#             font_size: '30sp'
-#             on_press: root.manager.current = 'work'
-#             background_normal: "images/img_bg.gif"
-#             background_down: "images/img_bg2.gif"
-#             canvas.before:
-#                 Line:
-#                     width: 3
-#                     rectangle: (self.x, self.y, self.width, self.height)
+# The Image widget is used to display an image
+# this module contain all features of images
+from kivy.uix.image import Image
 
-        
-# <WorkScreen>:
-#     BoxLayout:
-#         Button:
-#             text: 'QUIT'
-#             font_size: '30sp'
-#             size_hint: 1, 0.1
-#             on_press: root.manager.current = 'end'
-#             background_normal: "images/img_bg.gif"
-#             background_down: "images/img_bg2.gif"
-        
-              
-# <EndScreen>:
-#     BoxLayout:
-#     Button:
-#         text: 'This is how you fared:'
-#         font_size: '30sp'
-#         on_press: root.manager.current = 'start'
-#         background_normal: "images/img_bg.gif"
-#         background_down: "images/img_bg2.gif"
-# """)
+# The Widget class is the base class required for creating Widgets
+from kivy.uix.widget import Widget
 
-# # Declare both screens
-# class StartScreen(Screen):
-#     pass
+# to change the kivy default settings we use this module config
+from kivy.config import Config
 
-# class WorkScreen(Screen):
-#     pass
+# 0 being off 1 being on as in true / false
+# you can use 0 or 1 && True or False
+Config.set('graphics', 'resizable', True)
 
-# class EndScreen(Screen):
-#     pass
 
-# class TestApp(App):
+# creating the App class
+class MyApp(App):
 
-#     def build(self):
-#         # Create the screen manager
-#         sm = ScreenManager()
-#         sm.add_widget(StartScreen(name='start'))
-#         sm.add_widget(WorkScreen(name='work'))
-#         sm.add_widget(EndScreen(name='end'))
-#         return sm
-    
+	# defining build()
+	
+	def build(self):
+		
+		# loading image
+		self.img = Image(source ='images/img_bg.gif')
 
-# if __name__ == '__main__':
-#     TestApp().run()
-#     cv.destroyAllWindows()
+		# By default, the image is centered and fits
+		# inside the widget bounding box.
+		# If you don’t want that,
+		# you can set allow_stretch to
+		# True and keep_ratio to False.
+		self.img.allow_stretch = True
+		self.img.keep_ratio = True
+
+		# Providing Size to the image
+		# it varies from 0 to 1
+		#self.img.size_hint_x = 1
+		#self.img.size_hint_y = 1
+
+		# Position set
+		self.img.pos = (200, 200)
+
+		# Opacity adjust the fadeness of the image if
+		# 0 then it is complete black
+		# 1 then original
+		# it varies from 0 to 1
+		self.img.opacity = 1
+		
+
+		# adding image to widget
+		s = Widget()
+		s.add_widget(self.img)
+
+		# return widget
+		return s
+
+# run the app
+MyApp().run()
